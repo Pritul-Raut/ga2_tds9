@@ -2,6 +2,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import csv
 import os 
+import json 
+
+
 app = Flask(__name__)
 CORS(app)  # Enable CORS for requests from any origin
 
@@ -23,6 +26,19 @@ def load_student_data():
 
 # Load the data once when the server starts
 student_data = load_student_data()
+@app.route("/")
+def enternce():
+    """
+    API endpoint to return student data.
+    - If no class query parameter is specified, return all students.
+    - If one or more class query parameters are specified, filter students by class.
+    """
+    data={
+  "ngrok_url": "https://[random].ngrok-free.app"
+}
+
+    return json.dumps(data)
+
 
 @app.route("/api", methods=["GET"])
 def get_students():
